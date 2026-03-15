@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { FaStethoscope } from "react-icons/fa";
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
 const navigate = useNavigate();
@@ -19,7 +19,8 @@ return (
 <nav className="navbar">
 
 <div className="logo">
-❤️ CardioCare
+<FaStethoscope className="logo-icon" />
+CardioCare
 </div>
 
 <ul className="nav-links">
