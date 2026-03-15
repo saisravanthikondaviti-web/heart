@@ -607,171 +607,169 @@ transform:translateY(0);
 }
 
 /* ================= NAVBAR ================= */
-
-.navbar{
-
-position:fixed;
-top:0;
-left:0;
-
-width:100%;
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-padding:15px 60px;
-
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
-
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
-
-z-index:1000;
-
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 /* LOGO */
-
-.logo{
-
-font-size:22px;
-font-weight:600;
-
-color:#0077b6;
-
-display:flex;
-align-items:center;
-gap:8px;
-
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0077b6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* NAV LINKS */
-
-.nav-links{
-
-list-style:none;
-
-display:flex;
-gap:30px;
-align-items:center;
-
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
-.nav-links li{
-
-font-size:16px;
-
+.nav-links li {
+  font-size: 16px;
 }
 
-/* remove default button style */
-
-.nav-links button{
-
-background:none;
-border:none;
-outline:none;
-
-font-size:16px;
-font-weight:500;
-
-color:#1b4965;
-
-cursor:pointer;
-
-transition:0.3s;
-
+.nav-links button,
+.nav-links a {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1b4965;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
 }
 
-/* hover animation */
-
-.nav-links button:hover{
-
-color:#0077b6;
-
-transform:translateY(-2px);
-
-}
-
-/* precautions link */
-
-.nav-links a{
-
-text-decoration:none;
-
-font-size:16px;
-font-weight:500;
-
-color:#1b4965;
-
-transition:0.3s;
-
-}
-
-.nav-links a:hover{
-
-color:#0077b6;
-
-transform:translateY(-2px);
-
+.nav-links button:hover,
+.nav-links a:hover {
+  color: #0077b6;
+  transform: translateY(-2px);
 }
 
 .nav-links button::after,
-.nav-links a::after{
-
-content:"";
-display:block;
-
-width:0%;
-height:2px;
-
-background:#0077b6;
-
-transition:0.3s;
-
-margin:auto;
-
+.nav-links a::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #0077b6;
+  transition: 0.3s;
+  margin: auto;
 }
 
 .nav-links button:hover::after,
-.nav-links a:hover::after{
-
-width:100%;
-
+.nav-links a:hover::after {
+  width: 100%;
 }
+
 /* LOGIN / LOGOUT BUTTON */
-
-.nav-auth button{
-
-padding:8px 18px;
-
-border:none;
-border-radius:20px;
-
-background:linear-gradient(135deg,#0077b6,#00b4d8);
-
-color:white;
-
-font-weight:500;
-
-cursor:pointer;
-
-transition:0.3s;
-
+.nav-auth button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.nav-auth button:hover{
-
-transform:translateY(-2px);
-
-box-shadow:0 6px 15px rgba(0,0,0,0.2);
-
+.nav-auth button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* spacing so content doesn't hide behind navbar */
+body {
+  padding-top: 80px;
+}
 
-body{
-padding-top:80px;
+/* ================= HAMBURGER & RESPONSIVE ================= */
+
+/* Hamburger button - hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #0077b6;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Hamburger animation when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 80px 20px;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li,
+  .nav-links button,
+  .nav-links a {
+    font-size: 18px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Optional: hide login/logout button on top and include inside menu */
+  .nav-auth {
+    display: none;
+  }
 }
 
 /* ================= ABOUT SECTION ================= */
