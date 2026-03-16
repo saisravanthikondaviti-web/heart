@@ -15,8 +15,8 @@ function Footer() {
                     <h3>CardioCare</h3>
 
                     <p>
-                        AI-powered heart disease prediction system designed
-                        to assist early risk detection and promote better heart health.
+                         Heart disease prediction system designed
+                        to assist early risk detection and promote better heart health through personalized risk assessments.
                     </p>
 
                 </div>

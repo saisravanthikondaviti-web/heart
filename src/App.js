@@ -1,3 +1,5 @@
+// src/App.js
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -9,40 +11,54 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Precautions from "./pages/Precautions";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const [isLoggedIn, setIsLoggedIn] = useState(false);
+  return (
+    <Router>
 
-return (
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
 
-<Router>
+      <Routes>
 
-<Navbar
-isLoggedIn={isLoggedIn}
-setIsLoggedIn={setIsLoggedIn}
-/>
+        <Route path="/" element={<Home />} />
 
-<Routes>
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
 
-<Route path="/" element={<Home />} />
+        {/* 🔐 Protected routes */}
 
-<Route
-path="/login"
-element={<Login setIsLoggedIn={setIsLoggedIn} />}
-/>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
-<Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/precautions"
+          element={
+            <ProtectedRoute>
+              <Precautions />
+            </ProtectedRoute>
+          }
+        />
 
-<Route path="/precautions" element={<Precautions />} />
+      </Routes>
 
-</Routes>
+      <Footer />
 
-<Footer/>
-
-</Router>
-
-);
-
+    </Router>
+  );
 }
 
 export default App;

@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../App.css";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function Precautions() {
   const location = useLocation();
@@ -54,6 +56,36 @@ function Precautions() {
     </div>
   );
 
+  const downloadPDF = () => {
+    const input = document.getElementById("report-content");
+
+    html2canvas(input, { scale: 2 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("p", "mm", "a4");
+
+      const imgWidth = 210; // A4 width
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // handle multiple pages
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save("Heart_Health_Report.pdf");
+    });
+  };
+
   return (
     <div className="precautions-page">
       <h1>Heart Health Report</h1>
@@ -72,11 +104,24 @@ function Precautions() {
         <p>{risk}</p>
       </div>
 
+
+      {/* ✅ Wrap EVERYTHING inside this */}
+      <div id="report-content">
+        
       <Section title="General Precautions" items={data.precautions} img={images.precautions} />
       <Section title="Diet Recommendations" items={data.diet} img={images.diet} />
       <Section title="Exercise Plan" items={data.exercise} img={images.exercise} />
       <Section title="Medical Advice" items={data.medical} img={images.medical} />
-    </div>
+
+      </div>
+
+      
+      {/* ✅ Download Button */}
+      <button className="download-btn" onClick={downloadPDF}>
+        Download PDF
+      </button>
+      
+    </div >
   );
 }
 
