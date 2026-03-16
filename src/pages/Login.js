@@ -1,35 +1,56 @@
-
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login({ setIsLoggedIn }) {
+  const navigate = useNavigate();
 
-const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const handleLogin = () => {
+  const handleLogin = () => {
+    // Simple validation (optional)
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
 
-setIsLoggedIn(true);
+    // ✅ Set React state
+    setIsLoggedIn(true);
 
-navigate("/dashboard");
+    // ✅ Store login state in localStorage (IMPORTANT)
+    localStorage.setItem("isLoggedIn", "true");
 
-};
+    // ✅ Optional: store user info
+    const userData = { email };
+    localStorage.setItem("user", JSON.stringify(userData));
 
-return (
+    // ✅ Redirect after login
+    navigate("/dashboard");
+  };
 
-<div className="login-container">
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
 
-<h2>Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
 
-<input type="email" placeholder="Email" />
-<input type="password" placeholder="Password" />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-<button onClick={handleLogin}>
-Login
-</button>
-
-</div>
-
-);
-
+      <button onClick={handleLogin}>
+        Login
+      </button>
+    </div>
+  );
 }
 
 export default Login;

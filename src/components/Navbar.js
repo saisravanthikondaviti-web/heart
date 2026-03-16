@@ -44,7 +44,7 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
           <button onClick={() => goToSection("faq")}>FAQ</button>
         </li>
         <li>
-          <Link to="/precautions" onClick={() => setMenuActive(false)}>
+          <Link to="/login" onClick={() => setMenuActive(false)}>
             Precautions
           </Link>
         </li>
