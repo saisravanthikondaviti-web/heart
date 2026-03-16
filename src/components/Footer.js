@@ -1,70 +1,68 @@
 import { Link } from "react-router-dom";
 import "../App.css";
+function Footer() {
 
-function Footer(){
+    return (
 
-return(
+        <footer className="footer">
 
-<footer className="footer">
+            <div className="footer-container">
 
-<div className="footer-container">
+                {/* ABOUT */}
 
-{/* ABOUT */}
+                <div className="footer-section">
 
-<div className="footer-section">
+                    <h3>CardioCare</h3>
 
-<h3>CardioCare</h3>
+                    <p>
+                        AI-powered heart disease prediction system designed
+                        to assist early risk detection and promote better heart health.
+                    </p>
 
-<p>
-AI-powered heart disease prediction system designed
-to assist early risk detection and promote better heart health.
-</p>
+                </div>
 
-</div>
+                {/* QUICK LINKS */}
 
-{/* QUICK LINKS */}
+                <div className="footer-section">
 
-<div className="footer-section">
+                    <h3>Quick Links</h3>
 
-<h3>Quick Links</h3>
+                    <ul>
 
-<ul>
+                        <li><Link to="/#home">Home</Link></li>
+                        <li><Link to="/#about">About</Link></li>
+                        <li><Link to="/#faq">FAQ</Link></li>
+                        <li><Link to="/login">Precautions</Link></li>
+                        <li><Link to="/#contact">Contact</Link></li>
+                    </ul>
 
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><Link to="/precautions">Precautions</Link></li>
-<li><a href="#contact">Contact</a></li>
+                </div>
 
-</ul>
+                {/* CONTACT */}
 
-</div>
+                <div className="footer-section">
 
-{/* CONTACT */}
+                    <h3>Contact</h3>
 
-<div className="footer-section">
+                    <p>Email: cardiocare@gmail.com</p>
+                    <p>Phone: +91 9876543210</p>
+                    <p>Location: India</p>
 
-<h3>Contact</h3>
+                </div>
 
-<p>Email: cardioinsight@gmail.com</p>
-<p>Phone: +91 9876543210</p>
-<p>Location: India</p>
+            </div>
 
-</div>
+            {/* BOTTOM BAR */}
 
-</div>
+            <div className="footer-bottom">
 
-{/* BOTTOM BAR */}
+                <p>© 2026 CardioCare | All Rights Reserved</p>
 
-<div className="footer-bottom">
+            </div>
 
-<p>© 2026 CardioCare | All Rights Reserved</p>
+        </footer>
 
-</div>
-
-</footer>
-
-)
+    )
 
 }
 

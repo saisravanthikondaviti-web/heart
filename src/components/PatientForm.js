@@ -40,7 +40,7 @@ function PatientForm() {
 
   return (
     <div className="form-container">
-      <h2>Heart Disease Prediction</h2>
+      {/* <h2>Heart Disease Prediction</h2> */}
 
       <form className="patient-form" onSubmit={handleSubmit}>
         <input name="name" placeholder="Patient Name" onChange={handleChange} required />

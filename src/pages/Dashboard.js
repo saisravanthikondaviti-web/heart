@@ -6,7 +6,7 @@ function Dashboard() {
     <div className="dashboard-container">
 
       <div className="dashboard-header">
-        <h1>❤️ CardioInsight AI</h1>
+        <h1>❤️ CardioCare </h1>
         <p>Heart Disease Prediction System</p>
       </div>
 
