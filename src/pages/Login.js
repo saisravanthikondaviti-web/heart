@@ -68,7 +68,7 @@ function Login({ setIsLoggedIn }) {
       } 
       else if (error.code === "auth/wrong-password") {
         alert("Incorrect password");
-      } 
+      }  
       else if (error.code === "auth/email-already-in-use") {
         alert("Account Created Successfully!!. Please login.");
       } 
