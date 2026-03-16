@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { predictHeart } from "../services/api";
 import "../App.css";
 
+// ✅ ADD THESE
+import { auth, db } from "../firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
 function PatientForm() {
   const navigate = useNavigate();
 
@@ -33,6 +37,32 @@ function PatientForm() {
 
       // save result so Precautions page can read
       localStorage.setItem("heartResult", JSON.stringify(res.data));
+
+      // ✅ FIREBASE SAVE STARTS HERE
+      const user = auth.currentUser;
+
+      if (user) {
+        await addDoc(collection(db, "predictions"), {
+          userId: user.uid,
+          email: user.email,
+
+          // form data
+          ...form,
+
+          // prediction result
+          prediction: res.data.prediction,
+          risk_level: res.data.risk_level,
+          disease_type: res.data.disease_type,
+
+          createdAt: serverTimestamp()
+        });
+
+        console.log("Saved to Firebase ✅");
+      } else {
+        console.log("User not logged in, not saved");
+      }
+      // ✅ FIREBASE SAVE ENDS HERE
+
     } catch (err) {
       console.log("Prediction error:", err);
     }
